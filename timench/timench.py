@@ -10,18 +10,26 @@ class Timench:
         self.reports = {}
 
     def add_func(self, name: str, func):
+        """
+        Add function for time measurement to self.funcs dict
+
+        :param name: func name as string
+        :param func: function without ()
+        :return: name variable
+        """
         self.funcs[name] = func
         return name
 
     def add_results(self, name: str, times: list, report: str):
+        """
+        Add results of measurement to self.times and self.reports
+        :param name: func name as string
+        :param times: list with time values from output of time measurement
+        :param report: report as string from output of time measurement
+        :return:
+        """
         self.times[name] = times
         self.reports[name] = report
-
-    def run(self, name: str, repeats, *args, **kwargs):
-        print('Running: %s' % name)
-        times, report = self.run_func(self.funcs[name], repeats, *args, **kwargs)
-        self.add_results(name, times, report)
-        return report
 
     def get_report(self, name: str):
         return self.reports.get(name)
@@ -36,7 +44,7 @@ class Timench:
             with open(filename, 'w') as file:
                 file.write('TIMENCH REPORT\n---\n')
                 for name in names:
-                    file.write('Results for %s\n' % name)
+                    file.write('\nResults for %s\n' % name)
                     file.write(self.reports.get(name) or 'Report was not found\n')
         else:
             print('No reports to write. Run all tests again')
@@ -47,13 +55,30 @@ class Timench:
     def get_all_times(self):
         return self.times
 
+    def run(self, name: str, repeats, *args, **kwargs):
+        print('Running: %s' % name)
+        times, report = self.run_func(self.funcs[name], repeats, *args, **kwargs)
+        self.add_results(name, times, report)
+        return report
+
+    def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: list = None):
+        for name in self.funcs:
+            if not args_dict and not kwargs_dict:
+                self.run(name, repeats)
+            elif args_dict and kwargs_dict is None:
+                self.run(name, repeats, *args_dict.get(name))
+            elif args_dict is None and kwargs_dict:
+                self.run(name, repeats, **kwargs_dict.get(name))
+            else:
+                self.run(name, repeats, *args_dict.get(name), **kwargs_dict.get(name))
+
     @staticmethod
-    def run_func(func, repeat_count: int = None, *args, **kwargs):
+    def run_func(func, repeat_count: int = 1, *args, **kwargs):
         times = []
-        for _ in range(repeat_count or 1):
+        for _ in range(repeat_count):
             time_start = time.time()
             func(*args, **kwargs)
             time_end = time.time()
             times.append(time_end - time_start)
-        report = RESULTS % (sum(times), min(times), sum(times) / len(times), repeat_count)
+        report = RESULTS % (func.__name__, sum(times), min(times), sum(times) / len(times), repeat_count)
         return times, report

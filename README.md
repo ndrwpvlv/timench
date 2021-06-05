@@ -1,5 +1,5 @@
 # Timench
-**Timench** is measure execution time class-based library
+**Timench** is measure execution time class-based library for working with multiple functions 
 
 Basic usage code:
 ```python

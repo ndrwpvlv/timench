@@ -1,0 +1,8 @@
+TIMENCH REPORT
+---
+Results for factorial
+---
+Total time = 0.419085 sec
+Best loop time = 0.000344992 sec
+Average loop time = 0.000419085 sec
+Repeats = 1000

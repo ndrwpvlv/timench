@@ -1,8 +1,3 @@
-# Timench
-**Timench** is measure execution time class-based library
-
-Basic usage code:
-```python
 from timench import Timench
 
 
@@ -24,13 +19,3 @@ tch.add_func(factorial.__name__, factorial)
 tch.run(factorial.__name__, repeats, 1000)
 print(tch.get_report(factorial.__name__))
 tch.write_reports()
-```
-Output example:
-```
-Running: factorial
----
-Total time = 0.419085 sec
-Best loop time = 0.000344992 sec
-Average loop time = 0.000419085 sec
-Repeats = 1000
-```

@@ -61,7 +61,7 @@ class Timench:
         self.add_results(name, times, report)
         return report
 
-    def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: list = None):
+    def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: dict = None):
         for name in self.funcs:
             if not args_dict and not kwargs_dict:
                 self.run(name, repeats)

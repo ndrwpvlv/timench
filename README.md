@@ -22,8 +22,8 @@ repeats = 1000
 
 tch.add_func(factorial.__name__, factorial)
 tch.run(factorial.__name__, repeats, 1000)
-print(tch.get_report(factorial.__name__))
-tch.write_reports()
+print(tch.get_report(factorial.__name__))  # Output report to terminal
+tch.write_reports('timench_report.txt')  # write reports to txt-file
 ```
 Output example:
 ```

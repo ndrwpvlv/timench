@@ -1,21 +1,19 @@
+"""
+Example 1. Time measurement of function single run
+"""
+
+import time
+
 from timench import Timench
 
+tmnch = Timench()
+case_name = 'sleep_1sec'  # Set run case name
+repeats = 10  # Count of repeats
+sleep_time = 1.0  # args of time.sleep(sleep_time)
 
-def factorial(n: int):
-    if n == 1:
-        return n
-    if n < 1:
-        return 'Enter number bigger or equal 1'
-    f = 1
-    for _ in range(1, n + 1):
-        f *= _
-    return f
+tmnch.add_func(case_name, time.sleep)  # Add function to benchmark list
 
+tmnch.run(case_name, repeats, sleep_time)  # Run benchmark
+print(tmnch.get_report(case_name))  # Print benchmark report
 
-tch = Timench()
-repeats = 1000
-
-tch.add_func(factorial.__name__, factorial)
-tch.run(factorial.__name__, repeats, 1000)
-print(tch.get_report(factorial.__name__))
-tch.write_reports()
+tmnch.write_reports('example_1_report.txt')  # Write all reports to txt-file

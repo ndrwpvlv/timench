@@ -1,0 +1,10 @@
+TIMENCH REPORT
+---
+
+Results for sleep_1sec
+---
+Function: sleep
+Total time = 10.0128 sec
+Best loop time = 1.00024 sec
+Average loop time = 1.00128 sec
+Repeats = 10

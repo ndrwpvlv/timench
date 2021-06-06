@@ -63,14 +63,8 @@ class Timench:
 
     def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: dict = None):
         for name in self.funcs:
-            if not args_dict and not kwargs_dict:
-                self.run(name, repeats)
-            elif args_dict and kwargs_dict is None:
-                self.run(name, repeats, *args_dict.get(name))
-            elif args_dict is None and kwargs_dict:
-                self.run(name, repeats, **kwargs_dict.get(name))
-            else:
-                self.run(name, repeats, *args_dict.get(name), **kwargs_dict.get(name))
+            self.run(name, repeats, *(args_dict.get(name) if args_dict else []),
+                     **(kwargs_dict.get(name) if kwargs_dict else {}))
 
     @staticmethod
     def run_func(func, repeat_count: int = 1, *args, **kwargs):

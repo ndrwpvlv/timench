@@ -63,16 +63,16 @@ class Timench:
 
     def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: dict = None):
         for name in self.funcs:
-            self.run(name, repeats, *(args_dict.get(name) if args_dict else []),
-                     **(kwargs_dict.get(name) if kwargs_dict else {}))
+            self.run(name, repeats, *(args_dict.get(name) or [] if args_dict else []),
+                     **(kwargs_dict.get(name) or {} if kwargs_dict else {}))
 
     @staticmethod
     def run_func(func, repeat_count: int = 1, *args, **kwargs):
         times = []
         for _ in range(repeat_count):
-            time_start = time.time()
+            time_start = time.perf_counter()
             func(*args, **kwargs)
-            time_end = time.time()
+            time_end = time.perf_counter()
             times.append(time_end - time_start)
         report = RESULTS % (func.__name__, sum(times), min(times), sum(times) / len(times), repeat_count)
         return times, report

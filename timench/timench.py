@@ -1,6 +1,9 @@
 import time
+import logging
 
 from .templates import RESULTS
+
+logging.basicConfig(level=logging.INFO)
 
 
 class Timench:
@@ -8,6 +11,17 @@ class Timench:
         self.funcs = {}
         self.times = {}
         self.reports = {}
+        self.ctx_time_start = None
+        self.ctx_time_end = None
+
+    def __enter__(self):
+        logging.info('Time measurement has begun ')
+        self.ctx_time_start = time.perf_counter()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.ctx_time_end = time.perf_counter()
+        exec_time = self.ctx_time_end - self.ctx_time_start
+        logging.info('Run time = %g sec' % exec_time)
 
     def add_func(self, name: str, func):
         """
@@ -47,7 +61,7 @@ class Timench:
                     file.write('\nResults for %s\n' % name)
                     file.write(self.reports.get(name) or 'Report was not found\n')
         else:
-            print('No reports to write. Run all tests again')
+            logging.info('No reports to write. Run all tests again')
 
     def get_times_by_name(self, name: str):
         return self.times.get(name)
@@ -56,7 +70,7 @@ class Timench:
         return self.times
 
     def run(self, name: str, repeats, *args, **kwargs):
-        print('Running: %s' % name)
+        logging.info('Running: %s' % name)
         times, report = self.run_func(self.funcs[name], repeats, *args, **kwargs)
         self.add_results(name, times, report)
         return report

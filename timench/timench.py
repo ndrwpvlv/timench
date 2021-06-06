@@ -46,7 +46,7 @@ class Timench:
         self.reports[name] = report
 
     def get_report(self, name: str):
-        return self.reports.get(name)
+        return 'Case: %s\n%s' % (name, self.reports.get(name) or 'Report is not found. Rerun benchmark.')
 
     def get_reports(self):
         return self.reports

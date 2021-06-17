@@ -21,7 +21,7 @@ def crop_string_1(string: str, count: int):
     return ' '.join(string.split(' ')[:count - 1])
 
 
-def crop_string_2(string: str, count):
+def crop_string_2(string: str, count: int):
     return re.search('^((\S+\s?){0,%s})' % count, string).group(1)
 
 

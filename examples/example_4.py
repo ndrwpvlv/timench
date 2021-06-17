@@ -10,19 +10,19 @@ tmnch = Timench()
 repeats = 1000
 
 
-def crop_string_0(string: str, count: int):
-    minimize = string.split(' ')
+def crop_string_0(text: str, count: int):
+    minimize = text.split(' ')
     if len(minimize) > count:
         minimize = minimize[:count - 1]
     return ' '.join(minimize)
 
 
-def crop_string_1(string: str, count: int):
-    return ' '.join(string.split(' ')[:count - 1])
+def crop_string_1(text: str, count: int):
+    return ' '.join(text.split(' ')[:count - 1])
 
 
-def crop_string_2(string: str, count: int):
-    return re.search('^((\S+\s?){0,%s})' % count, string).group(1)
+def crop_string_2(text: str, count: int):
+    return re.search('^((\S+\s?){0,%s})' % count, text).group(1)
 
 
 def first_n_words(text, n):

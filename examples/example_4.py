@@ -7,7 +7,7 @@ words_count = 1000
 string = ' '.join(['text' for _ in range(words_count)])
 
 tmnch = Timench()
-repeats = 1000
+repeats = 10000
 
 
 def crop_string_0(text: str, count: int):

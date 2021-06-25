@@ -37,24 +37,23 @@ from timench import Timench
 
 tmnch = Timench()
 repeats = 10
-args_dict = {  # dict structure: {case_name: [args] of function func(*args), }
-    'sleep_1s': [1.0, ],
-    'sleep_2s': [2.0, ],
-    'sleep_3s': [3.0, ]
+env_args = {  # dict structure: {case_name: [args, kwargs] of function func(*args, **kwargs), }
+    'sleep_1s': [[1.0, ], None],
+    'sleep_2s': [[2.0, ], None],
+    'sleep_3s': [[3.0, ], None]
 }
-kwargs_dict = None  # dict structure {case_name: {kwargs} of function func(**kwargs)}
 
-for _ in args_dict:  # # Add functions to benchmark list
-    tmnch.add_func(_, time.sleep)
+for case_name in env_args:  # # Add functions to benchmark list
+    tmnch.add_func(case_name, time.sleep)
 ```
 Run all benchmarks:
 ```python
-tmnch.multiple_run(repeats, args_dict)  # Run multiple benchmarks
+tmnch.multiple_run(repeats, env_args)   # Run multiple benchmarks
 ```
 Output reports to terminal and txt-file:
 ```python
-for _ in args_dict:
-    print(tmnch.get_report(_))  # Print to terminal all reports
+for case_name in env_args:
+    print(tmnch.get_report(case_name))  # Print to terminal all reports
 
 tmnch.write_reports('example_2_report.txt')  # Write all reports to txt-file
 ```
@@ -111,20 +110,19 @@ from timench import Timench
 
 tmnch = Timench()
 repeats = 10
-args_dict = {  # dict structure: {case_name: [args] of function func(*args), }
-    'sleep_1s': [1.0, ],
-    'sleep_2s': [2.0, ],
-    'sleep_3s': [3.0, ]
+env_args = {  # dict structure: {case_name: [args, kwargs] of function func(*args, **kwargs), }
+    'sleep_1s': [[1.0, ], None],
+    'sleep_2s': [[2.0, ], None],
+    'sleep_3s': [[3.0, ], None]
 }
-kwargs_dict = None  # dict structure {case_name: {kwargs} of function func(**kwargs)}
 
-for _ in args_dict:  # # Add functions to benchmark list
-    tmnch.add_func(_, time.sleep)
+for case_name in env_args:  # # Add functions to benchmark list
+    tmnch.add_func(case_name, time.sleep)
 
-tmnch.multiple_run(repeats, args_dict)  # Run multiple benchmarks
+tmnch.multiple_run(repeats, env_args)  # Run multiple benchmarks
 
-for _ in args_dict:
-    print(tmnch.get_report(_))  # Print to terminal all reports
+for case_name in env_args:
+    print(tmnch.get_report(case_name))  # Print to terminal all reports
 
 tmnch.write_reports('example_2_report.txt')  # Write all reports to txt-file
 ```

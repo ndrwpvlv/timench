@@ -4,23 +4,23 @@ TIMENCH REPORT
 Results for sleep_1s
 ---
 Function: sleep
-Total time = 10.0198 sec
-Best loop time = 1.00085 sec
-Average loop time = 1.00198 sec
+Total time = 10.0421 sec
+Best loop time = 1.00063 sec
+Average loop time = 1.00421 sec
 Repeats = 10
 
 Results for sleep_2s
 ---
 Function: sleep
-Total time = 20.0214 sec
-Best loop time = 2.00079 sec
-Average loop time = 2.00214 sec
+Total time = 20.0769 sec
+Best loop time = 2.0007 sec
+Average loop time = 2.00769 sec
 Repeats = 10
 
 Results for sleep_3s
 ---
 Function: sleep
-Total time = 30.0395 sec
-Best loop time = 3.00125 sec
-Average loop time = 3.00395 sec
+Total time = 30.1248 sec
+Best loop time = 3.00189 sec
+Average loop time = 3.01248 sec
 Repeats = 10

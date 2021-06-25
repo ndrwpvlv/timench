@@ -108,17 +108,17 @@ class Timench:
         self.add_results(case_name, times, report)
         return report
 
-    def multiple_run(self, repeats, args_dict: dict = None, kwargs_dict: dict = None):
+    def multiple_run(self, repeats, env_args: dict = None):
         """
         Batch run for multiple functions
         :param repeats: count of repeats as int
-        :param args_dict: dict with func(*args1) by case name - {case_name1: [args1],}
-        :param kwargs_dict: dict with func(**kwargs1) by case name - {case_name1: {**kwargs1},}
+        :param env_args: dict with func(*args1, **kwargs1) by case name - {case_name1: [args, kwargs],}
+                         args = list(...), kwargs = dict(...)
         :return: None
         """
         for case_name in self.funcs:
-            self.run(case_name, repeats, *(args_dict.get(case_name) or [] if args_dict else []),
-                     **(kwargs_dict.get(case_name) or {} if kwargs_dict else {}))
+            args_case, kwargs_case = env_args[case_name] or [[], {}]
+            self.run(case_name, repeats, *(args_case or []), **(kwargs_case or {}))
 
     @staticmethod
     def run_func(func, repeat_count: int = 1, *args, **kwargs):

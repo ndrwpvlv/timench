@@ -41,20 +41,19 @@ funcs_dict = {
     crop_string_2.__name__: crop_string_2,
     first_n_words.__name__: first_n_words,
 }
-args_dict = {  # dict structure: {case_name: [args] of function func(*args), }
-    crop_string_0.__name__: [string, 200, ],
-    crop_string_1.__name__: [string, 200, ],
-    crop_string_2.__name__: [string, 200, ],
-    first_n_words.__name__: [string, 200, ],
+env_args = {  # dict structure: {case_name: [args, kwargs] of function func(*args, **kwargs), }
+    crop_string_0.__name__: [[string, 200, ], None],
+    crop_string_1.__name__: [[string, 200, ], None],
+    crop_string_2.__name__: [[string, 200, ], None],
+    first_n_words.__name__: [[string, 200, ], None],
 }
-kwargs_dict = None  # dict structure {case_name: {kwargs} of function func(**kwargs)}
 
 for case_name in funcs_dict:  # # Add functions to benchmark list
     tmnch.add_func(case_name, funcs_dict[case_name])
 
-tmnch.multiple_run(repeats, args_dict)  # Run multiple benchmarks
+tmnch.multiple_run(repeats, env_args)  # Run multiple benchmarks
 
-for case_name in args_dict:
+for case_name in env_args:
     print(tmnch.get_report(case_name))  # Print to terminal all reports
 
 tmnch.write_reports('example_4_report.txt')  # Write all reports to txt-file

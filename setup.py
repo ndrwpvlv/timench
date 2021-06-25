@@ -7,14 +7,14 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='timench',
-    version='0.1.0',
+    version='0.2.0',
     packages=['timench', ],
     url='https://github.com/ndrwpvlv/timench',
     license='MIT',
     author='Andrei S. Pavlov',
     author_email='ndrw.pvlv@gmail.com',
     description='Timench is a small framework for measure execution time of one function, multiple functions and code',
-    download_url='https://github.com/ndrwpvlv/timench/archive/refs/tags/0.1.0.tar.gz',
+    download_url='https://github.com/ndrwpvlv/timench/archive/refs/tags/0.2.0.tar.gz',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords=['time', 'measure execution time', 'measure time', ],

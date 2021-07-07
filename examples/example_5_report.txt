@@ -1,0 +1,50 @@
+TIMENCH REPORT
+---
+
+Results for sum_1
+---
+Function: sum_lst
+Total time = 0.00900042 sec
+Best loop time = 2.9509e-05 sec
+Average loop time = 9.00042e-05 sec
+Repeats = 100
+
+Results for flat_1
+---
+Function: flat
+Total time = 0.00363718 sec
+Best loop time = 3.2562e-05 sec
+Average loop time = 3.63718e-05 sec
+Repeats = 100
+
+Results for sum_2
+---
+Function: sum_lst
+Total time = 0.271297 sec
+Best loop time = 0.00207202 sec
+Average loop time = 0.00271297 sec
+Repeats = 100
+
+Results for flat_2
+---
+Function: flat
+Total time = 0.0326995 sec
+Best loop time = 0.000306655 sec
+Average loop time = 0.000326995 sec
+Repeats = 100
+
+Results for sum_3
+---
+Function: sum_lst
+Total time = 36.4801 sec
+Best loop time = 0.336264 sec
+Average loop time = 0.364801 sec
+Repeats = 100
+
+Results for flat_3
+---
+Function: flat
+Total time = 0.384994 sec
+Best loop time = 0.00275655 sec
+Average loop time = 0.00384994 sec
+Repeats = 100

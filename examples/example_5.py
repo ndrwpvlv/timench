@@ -1,4 +1,3 @@
-import random
 from timench import Timench
 
 # Setup
